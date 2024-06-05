@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="app.component.css">
+
+
+
+<div *ngIf="isLogedIn==0">
+    <h2 style="color:rgb(19, 100, 94)">User Login</h2>
+    <div style="color: rgb(58, 147, 174);">Username:</div><input type="text" [(ngModel)]="username"><br>
+    <div style="color: rgb(32, 148, 134);">password:</div><input type="text" [(ngModel)]="password"><br>
+   
+    <button (click)="login()"><strong>login</strong></button><br>
+
+    
+   
+</div>
+<div *ngIf="isLogedIn==1">
+    <button (click)="logout()">log out</button><br>
+    Welcome<br>{{user.name}}<br><br>
+<table border="1">
+<tr>
+<th>SN</th>
+<th>Work</th>
+<th>Action</th>
+</tr>
+<tr *ngFor="let task of user.task, let i=index">
+<td>{{i+1}}</td>
+<td>{{task.work}}</td>
+<td>{{getStatus(task.status)}}</td>
+<td>
+    <button (click)="changeStatus(task,1)">MarkasWorking</button>
+    <button (click)="changeStatus(task,2)">MarkasDone</button>
+    <button (click)="deleteTaskofUser(task)">Delete</button>
+</td>
+</tr>
+</table>
+<br><br>
+AddNewTask:<br>
+<input type="text" [(ngModel)]="work">
+<button (click)="addNewTask()">Add</button>
+</div>
+
+
